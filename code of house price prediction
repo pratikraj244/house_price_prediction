@@ -1,0 +1,44 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from sklearn import linear_model
+from sklearn.metrics import mean_squared_error
+a = pd.read_csv("houseprice.csv")
+b = []
+e = []
+print(a)
+a1 = a["area"]
+a2 = a["no. of bed"]
+a3 = a["gym"]
+a4 = a["lift "]
+a5 = a["parking"]
+a6 = a["maintainance"]
+for i in range(len(a1)):
+    c = [a1[i],a2[i],a3[i],a4[i],a5[i],a6[i]]
+    b.append(c)
+for i in range(32):
+    y = [b[i][0]]
+    e.append(y)
+c_train = e
+c_test = e
+la_train = a["price"]
+la_test = a["price"]
+c = linear_model.LinearRegression()
+c.fit(c_train,la_train)
+d = c.predict(e)
+print(d)
+f = c.predict([[1040]])
+print("predicted value is",f)
+g_train = b
+g_test = b
+lg_train = a["price"]
+lg_test = a["price"]
+g = linear_model.LinearRegression()
+g.fit(g_train,g_test)
+h = g.predict(b)
+#print(len(d),len(c_test))
+#print(mean_squared_error(e,d))
+plt.scatter(c_test,la_test)
+#plt.scatter(a1,d)
+plt.plot(a1,d)
+plt.show()
